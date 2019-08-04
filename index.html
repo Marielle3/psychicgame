@@ -11,13 +11,21 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <title>Psychic Game</title>
+
+  <style type="text/css">
+    .palm-reader {
+      width: 350px;
+      height: 350px;
+      opacity: 1;
+      display: block;
+      transition: .5s ease;
+      backface-visibility: hidden;
+    }
+  </style>
+
 </head>
 
 <body>
-  <h1>The Psychic Game</h1>
-  <p id="wins"></p>
-  <p id="losses"></p>
-
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -29,24 +37,84 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+  <!-- Background Layout-->
 
-  <script>
+  <body background="assets/images/prism.png">
 
-    // Created an array named myLetters.
-    var myLetters = ["m", "e", "v", "l", "a", "r", "c", "j", "y"];
+    <div class="container">
+      <h1 class="text-danger">The Psychic Game</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <img class="palm-reader"
+            src="https://www.monsterchildren.com/wp-content/uploads/2018/04/monster-children-psychic.jpg" alt="psychic">
+        </div>
+        <div class="col-md-6">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Guess what letter I'm thinking of
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Wins
+              <span class="badge badge-primary badge-pill" id="wins">0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Losses
+              <span class="badge badge-primary badge-pill" id="lose">0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Guesses Left
+              <span class="badge badge-primary badge-pill" id="guessesLeft">9</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Your Guesses so far:
+              <span class="badge badge-primary badge-pill" id="letter"></span>
+            </li>
+          </ul>
+        </div>
 
-    // We start the game with a score of 0.
-    var score = 0;
-
-    // Variable to hold the index of current answers.
-    var lettersIndex = 0;
-   
-  //  FUNCTIONS  // 
+        <script>
 
 
-  </script>
 
-</body>
+          // Created an array named myLetters.
+          var myLetters = ["m", "e", "v", "l", "a", "r", "c", "j", "y"];
+
+          // We start the game with a score of 0.
+          var Wins = 0;
+          var Losses = 0;
+          var numberofGuesses = 9;
+          var userGuess = [];
+
+
+          //  FUNCTIONS  // 
+
+          // Sets userGuess variable equal to a random choice from the myLetter array.
+          var userGuess = myLetters[Math.floor(Math.random() * myLetters.length)];
+
+          // When the user presses a key, it will run the following function..
+          document.onkeyup = function (event) {
+            numberofGuesses--;
+
+            var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+            if (userGuess === myLetters) {
+              wins++;
+              document.querySelector("#wins").innerHTML = "Wins: " + wins;
+              restart();
+            }
+            else if (numberofGuesses === 0) {
+              losses++;
+              document.querySelector("#lose").innerHTML = "Loses: " + losses;
+              restart();
+            }
+          };
+
+
+
+
+        </script>
+
+  </body>
 
 </html>
 

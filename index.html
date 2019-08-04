@@ -91,26 +91,46 @@
           // Sets userGuess variable equal to a random choice from the myLetter array.
           var userGuess = myLetters[Math.floor(Math.random() * myLetters.length)];
 
+
+          var restart = function () {
+            numberofGuesses = 9;
+            userGuess = [];
+            var userGuess = myLetters[Math.floor(Math.random() * myLetters.length)];
+          }
+
+
           // When the user presses a key, it will run the following function..
           document.onkeyup = function (event) {
             numberofGuesses--;
 
             var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+            var answers = myLetters.includes(userGuess);
 
             if (userGuess === myLetters) {
-              wins++;
-              document.querySelector("#wins").innerHTML = "Wins: " + wins;
+              Wins++;
+              document.querySelector("#wins").innerHTML = "Wins: " + Wins;
               restart();
             }
             else if (numberofGuesses === 0) {
-              losses++;
-              document.querySelector("#lose").innerHTML = "Loses: " + losses;
+              Losses++;
+              document.querySelector("#lose").innerHTML = "Loses: " + Losses;
               restart();
             }
-          };
+            else  if (answers === false) {
+                return false;
+            }
+             else if (answers === true) {
+                //If the Users choice was an alphabet char then update guesses left and add users guess to the array of guessed letters
+                numberofGuesses--;
+                userGuess.push(myLetters);
+                updateGuessesLeft();
+                updateGuessesSoFar();
+
+              }
+            };
 
 
-
+// What's missing... getting the letters to show up on the browser and getting the interaction from user to computer :/ 
 
         </script>
 

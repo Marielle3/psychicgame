@@ -67,72 +67,80 @@
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Your Guesses so far:
-              <span class="badge badge-primary badge-pill" id="letter"></span>
+              <span class="badge badge-primary badge-pill" id="letters"></span>
             </li>
           </ul>
         </div>
-
-        <script>
-
-
-
-          // Created an array named myLetters.
-          var myLetters = ["m", "e", "v", "l", "a", "r", "c", "j", "y"];
-
-          // We start the game with a score of 0.
-          var Wins = 0;
-          var Losses = 0;
-          var numberofGuesses = 9;
-          var userGuess = [];
+      </div>
+  </div>
+  <script>
 
 
-          //  FUNCTIONS  // 
 
-          // Sets userGuess variable equal to a random choice from the myLetter array.
-          var userGuess = myLetters[Math.floor(Math.random() * myLetters.length)];
+    // Created an array named myLetters.
+    var myLetters = ["m", "e", "v", "l", "a", "r", "c", "j", "y"];
 
-
-          var restart = function () {
-            numberofGuesses = 9;
-            userGuess = [];
-            var userGuess = myLetters[Math.floor(Math.random() * myLetters.length)];
-          }
+    // We start the game with a score of 0.
+    var Wins = 0;
+    var Losses = 0;
+    var numberofGuesses = 9;
+    var userGuesses = [];
 
 
-          // When the user presses a key, it will run the following function..
-          document.onkeyup = function (event) {
-            numberofGuesses--;
+    //  FUNCTIONS  // 
 
-            var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-            var answers = myLetters.includes(userGuess);
+    // Sets userGuess variable equal to a random choice from the myLetter array.
+    //var userGuess = myLetters[Math.floor(Math.random() * myLetters.length)];
 
-            if (userGuess === myLetters) {
-              Wins++;
-              document.querySelector("#wins").innerHTML = "Wins: " + Wins;
-              restart();
-            }
-            else if (numberofGuesses === 0) {
-              Losses++;
-              document.querySelector("#lose").innerHTML = "Loses: " + Losses;
-              restart();
-            }
-            else  if (answers === false) {
-                return false;
-            }
-             else if (answers === true) {
-                //If the Users choice was an alphabet char then update guesses left and add users guess to the array of guessed letters
-                numberofGuesses--;
-                userGuess.push(myLetters);
-                updateGuessesLeft();
-                updateGuessesSoFar();
 
-              }
-            };
+    var restart = function () {
+      numberofGuesses = 9;
+      userGuess = [];
+      var userGuess = myLetters[Math.floor(Math.random() * myLetters.length)];
+    }
+
+
+    // When the user presses a key, it will run the following function..
+    document.onkeyup = function (event) {
+
+      // subtract guesses if User continues to guess the wrong letter until it hits 0, restart back to 9 guesses. 
+      numberofGuesses --;
+
+      var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+      console.log(userGuess);
+
+      document.querySelector("#letters").textContent += userGuess + " "; 
+
+
+      var answers = myLetters.includes(userGuess);
+
+      if (userGuess === myLetters) {
+        Wins++;
+        document.querySelector("#wins").innerHTML = "Wins: " + Wins;
+        restart();
+      }
+      else if (numberofGuesses === 0) {
+        Losses++;
+        document.querySelector("#lose").innerHTML = "Loses: " + Losses;
+        restart();
+      }
+      else  if (answers === false) {
+          return false;
+      }
+        else if (answers === true) {
+          //If the Users choice was an alphabet char then update guesses left and add users guess to the array of guessed letters
+          numberofGuesses--;
+          userGuess.push(myLetters);
+          updateGuessesLeft();
+          updateGuessesSoFar();
+
+        }
+      };
 
 
 // What's missing... getting the letters to show up on the browser and getting the interaction from user to computer :/ 
 
-        </script>
+  </script>
 
   </body>
 

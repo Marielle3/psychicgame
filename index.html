@@ -100,52 +100,56 @@
     }
 
 
-    // When the user presses a key, it will run the following function..
-    document.onkeyup = function (event) {
+  // When the user presses a key, it will run the following function..
+  document.onkeyup = function (event) {
 
-      // subtract guesses if User continues to guess the wrong letter until it hits 0, restart back to 9 guesses. 
-      numberofGuesses --;
+    // subtract guesses if User continues to guess the wrong letter until it hits 0, restart back to 9 guesses. 
+    numberofGuesses--;
 
-      var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-      console.log(userGuess);
+    // Display number of remaining guesses 
+    document.querySelector("#guessesLeft").textContent = numberofGuesses;
 
-      document.querySelector("#letters").textContent += userGuess + " "; 
+    // Capturing the letters pressed 
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    console.log(userGuess);
+    // Displaying the characters on the web browser 
+    document.querySelector("#letters").textContent += userGuess + " "; 
+
+  }
+    // 
+
+    // var answers = myLetters.includes(userGuess);
+
+    // if (userGuess === myLetters) {
+    //   Wins++;
+    //   document.querySelector("#wins").innerHTML = "Wins: " + Wins;
+    //   restart();
+    // }
+    // else if (numberofGuesses === 0) {
+    //   Losses++;
+    //   document.querySelector("#lose").innerHTML = "Loses: " + Losses;
+    //   restart();
+    // }
+    // else  if (answers === false) {
+    //     return false;
+    // }
+    //   else if (answers === true) {
+    //     //If the Users choice was an alphabet char then update guesses left and add users guess to the array of guessed letters
+    //     numberofGuesses--;
+    //     userGuess.push(myLetters);
+    //     updateGuessesLeft();
+    //     updateGuessesSoFar();
+
+    //   }
+    // };
 
 
-      var answers = myLetters.includes(userGuess);
-
-      if (userGuess === myLetters) {
-        Wins++;
-        document.querySelector("#wins").innerHTML = "Wins: " + Wins;
-        restart();
-      }
-      else if (numberofGuesses === 0) {
-        Losses++;
-        document.querySelector("#lose").innerHTML = "Loses: " + Losses;
-        restart();
-      }
-      else  if (answers === false) {
-          return false;
-      }
-        else if (answers === true) {
-          //If the Users choice was an alphabet char then update guesses left and add users guess to the array of guessed letters
-          numberofGuesses--;
-          userGuess.push(myLetters);
-          updateGuessesLeft();
-          updateGuessesSoFar();
-
-        }
-      };
-
-
-// What's missing... getting the letters to show up on the browser and getting the interaction from user to computer :/ 
+  // What's missing... getting the letters to show up on the browser and getting the interaction from user to computer :/ 
 
   </script>
 
+ 
+
   </body>
 
-</html>
-
-</body>
-
-</html>
+  </html>

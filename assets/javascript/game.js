@@ -58,23 +58,6 @@
    restart();
   
     }
-    // else if (numberofGuesses === 0) {
-    //   Losses++;
-    //   document.querySelector("#lose").innerHTML = "Loses: " + Losses;
-    //   restart();
-    // }
-    // else  if (answers === false) {
-    //     return false;
-    // }
-    //   else if (answers === true) {
-    //     //If the Users choice was an alphabet char then update guesses left and add users guess to the array of guessed letters
-    //     numberofGuesses--;
-    //     userGuess.push(myLetters);
-    //     updateGuessesLeft();
-    //     updateGuessesSoFar();
-
-    //   }
-    // };
 
 
-  // What's missing... getting the letters to show up on the browser and getting the interaction from user to computer :/ 
+  // restart function is not working

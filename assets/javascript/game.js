@@ -5,7 +5,7 @@
     var wins = 0;
     var losses = 0;
     var numberofGuesses = 9;
-    var userGuesses = [];
+    var userGuess = [];
 
 
     //  FUNCTIONS  // 
@@ -26,7 +26,11 @@
 
     // subtract guesses if User continues to guess the wrong letter until it hits 0, restart back to 9 guesses. 
     numberofGuesses--;
-    if(userGuess === 0){
+    if(numberofGuesses === 0){
+      losess++;
+      alert("You lose!");
+      //update losses counter
+       document.querySelector("#lose").innerHTML = "Losses: " + losses;
       restart();
     }
 
@@ -49,7 +53,7 @@
       wins++;
       alert("You win!");
       // update the counter in wins
-   document.querySelector("#wins").innerHTML = "Wins: " + Wins;
+   document.querySelector("#wins").innerHTML = "Wins: " + wins;
    //restart game
    restart();
   
